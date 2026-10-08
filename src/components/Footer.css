@@ -1,0 +1,85 @@
+.footer__body {
+  position: relative;
+  padding: 0.5rem 1.25rem calc(3rem + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+  background: var(--band-foot);
+  color: #f1f4fb;
+  text-align: center;
+}
+
+.footer__inner {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.moon {
+  display: block;
+  width: clamp(6.5rem, 26vw, 9rem);
+  height: auto;
+  margin: 0 auto 1.25rem;
+  overflow: visible;
+  filter: drop-shadow(0 0 18px rgba(255, 231, 163, 0.35));
+  animation: moon-bob 5s ease-in-out infinite;
+}
+
+.footer__inner .clothesline {
+  margin-bottom: 1.5rem;
+}
+
+.moon__zzz text {
+  animation: zzz 3.6s ease-in-out infinite;
+}
+
+.moon__zzz text:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.moon__zzz text:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.footer__line {
+  margin-top: 0.5rem;
+  color: #ffe7a3;
+  font-family: var(--font-script);
+  font-size: clamp(1.7rem, 6vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.footer__names {
+  margin-top: 0.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 4.6vw, 1.7rem);
+  font-weight: 500;
+}
+
+@keyframes moon-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(3deg);
+  }
+}
+
+@keyframes zzz {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(2px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moon,
+  .moon__zzz text {
+    animation: none;
+  }
+}

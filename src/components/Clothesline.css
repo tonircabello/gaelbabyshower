@@ -1,0 +1,29 @@
+.clothesline {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.onesie {
+  transform-origin: top center;
+  animation: onesie-sway 4s ease-in-out infinite;
+}
+
+@keyframes onesie-sway {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .onesie {
+    animation: none;
+  }
+}

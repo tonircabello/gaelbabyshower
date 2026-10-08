@@ -1,0 +1,24 @@
+.wave {
+  margin: -1px 0;
+  background: var(--from);
+  line-height: 0;
+}
+
+.wave svg {
+  display: block;
+  width: 100%;
+  height: clamp(40px, 7vw, 90px);
+}
+
+.wave--flip svg {
+  transform: scaleX(-1);
+}
+
+.wave__back {
+  fill: var(--to);
+  opacity: 0.5;
+}
+
+.wave__front {
+  fill: var(--to);
+}

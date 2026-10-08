@@ -1,0 +1,31 @@
+.bunting {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  max-width: none;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.bunting__flag {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  animation: flag-sway 3.8s ease-in-out var(--d, 0s) infinite;
+}
+
+@keyframes flag-sway {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bunting__flag {
+    animation: none;
+  }
+}

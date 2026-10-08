@@ -1,0 +1,57 @@
+.theme-toggle {
+  position: fixed;
+  top: calc(0.75rem + env(safe-area-inset-top, 0px));
+  right: calc(0.75rem + env(safe-area-inset-right, 0px));
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: 3px solid var(--outline);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 0 rgba(47, 59, 92, 0.3);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root[data-theme='dark'] .theme-toggle {
+  background: #2b3759;
+  border-color: var(--line);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px) rotate(-6deg);
+}
+
+.theme-toggle:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(47, 59, 92, 0.3);
+}
+
+.theme-toggle svg {
+  grid-area: 1 / 1;
+  width: 1.6rem;
+  height: 1.6rem;
+  transition: transform 0.4s cubic-bezier(0.3, 1.5, 0.5, 1), opacity 0.25s ease;
+}
+
+.theme-toggle__moon,
+:root[data-theme='dark'] .theme-toggle__sun {
+  opacity: 0;
+  transform: rotate(-80deg) scale(0.3);
+}
+
+:root[data-theme='dark'] .theme-toggle__moon {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .theme-toggle svg {
+    transition: none;
+  }
+}

@@ -1,0 +1,39 @@
+.cloud {
+  position: absolute;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 8px 10px rgba(47, 59, 92, 0.1));
+  animation: cloud-drift var(--dur, 16s) ease-in-out var(--delay, 0s) infinite alternate;
+}
+
+.cloud__shape {
+  fill: var(--cloud);
+}
+
+.cloud__face circle {
+  fill: #2f3b5c;
+}
+
+.cloud__face path {
+  stroke: #2f3b5c;
+}
+
+.cloud__cheek {
+  fill: #ff9e8e;
+  opacity: 0.6;
+}
+
+@keyframes cloud-drift {
+  from {
+    transform: translateX(-24px);
+  }
+  to {
+    transform: translateX(32px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cloud {
+    animation: none;
+  }
+}

@@ -1,55 +1,79 @@
-import type { CSSProperties, ReactNode } from 'react'
+import { cssVars } from '../lib/css'
+import BearScene from './BearScene'
+import Bunting from './Bunting'
+import Cloud from './Cloud'
+import Heart from './Heart'
+import Sparkles, { type SparkleSpec } from './Sparkles'
+import Wave from './Wave'
+import './Hero.css'
 
-const ONESIE_PATH =
-  'M-48 0 L-18 0 Q0 14 18 0 L48 0 L66 34 L44 46 L36 34 L36 108 Q36 126 18 126 L8 126 Q0 112 -8 126 L-18 126 Q-36 126 -36 108 L-36 34 L-44 46 L-66 34 Z'
+const BLOCKS = [
+  { letter: 'G', color: '#FFE7A3', tilt: -6 },
+  { letter: 'A', color: '#CDEBD9', tilt: 4 },
+  { letter: 'E', color: '#F8CBB8', tilt: -3 },
+  { letter: 'L', color: '#DDD3F5', tilt: 6 },
+]
 
-interface OnesieProps {
-  x: number
-  y: number
-  fill: string
-  delay: string
-  children?: ReactNode
-}
-
-function Onesie({ x, y, fill, delay, children }: OnesieProps) {
-  return (
-    <g transform={`translate(${x} ${y})`}>
-      <g className="onesie" style={{ animationDelay: delay } as CSSProperties}>
-        <rect x="-5" y="-14" width="10" height="22" rx="3" fill="#E9B78F" />
-        <path d={ONESIE_PATH} fill={fill} stroke="#2F3B5C" strokeWidth="2.5" strokeLinejoin="round" />
-        {children}
-      </g>
-    </g>
-  )
-}
+const SPARKLES: SparkleSpec[] = [
+  { x: 8, y: 20, size: 22, delay: 0 },
+  { x: 90, y: 15, size: 18, delay: 0.8, color: 'var(--sun)' },
+  { x: 16, y: 44, size: 14, delay: 1.4, color: 'var(--sun)' },
+  { x: 94, y: 40, size: 24, delay: 0.4 },
+  { x: 48, y: 8, size: 16, delay: 1.9 },
+  { x: 5, y: 58, size: 18, delay: 1.1 },
+  { x: 92, y: 60, size: 14, delay: 2.2, color: 'var(--sun)' },
+  { x: 60, y: 46, size: 12, delay: 0.6 },
+]
 
 export default function Hero() {
   return (
     <header className="hero">
-      <svg className="clothesline" viewBox="0 0 760 210" role="img" aria-label="Tres bodys de bebé tendidos en una cuerda">
-        <path d="M10 40 Q380 95 750 40" fill="none" stroke="var(--line)" strokeWidth="3" strokeLinecap="round" />
-        <Onesie x={170} y={62} fill="#FFE7A3" delay="0s">
-          <circle cx="0" cy="62" r="10" fill="#F8CBB8" />
-        </Onesie>
-        <Onesie x={380} y={82} fill="#FFFFFF" delay="-1.3s">
-          <text x="0" y="74" textAnchor="middle" fontFamily="Fredoka, sans-serif" fontSize="24" fontWeight="600" fill="#2F3B5C">
-            Gael
-          </text>
-        </Onesie>
-        <Onesie x={590} y={62} fill="#CDEBD9" delay="-2.6s">
-          <circle cx="-10" cy="56" r="4" fill="#2F3B5C" />
-          <circle cx="10" cy="56" r="4" fill="#2F3B5C" />
-          <path d="M-9 70 Q0 78 9 70" fill="none" stroke="#2F3B5C" strokeWidth="2.5" strokeLinecap="round" />
-        </Onesie>
-      </svg>
+      <Bunting />
+      <Sparkles items={SPARKLES} />
+      <Cloud className="hero__cloud hero__cloud--1" duration={15} delay={-9} />
+      <Cloud className="hero__cloud hero__cloud--2" duration={19} delay={-4} face />
+      <Cloud className="hero__cloud hero__cloud--3" duration={17} delay={-2} />
+      <Cloud className="hero__cloud hero__cloud--4" duration={22} delay={-12} />
 
-      <h1>Baby shower de Gael</h1>
-      <p className="hosts">Samanta y Toni os esperan</p>
-      <p className="intro">
-        Gael está a punto de llegar y ya tiene a todo el mundo con ganas de conocerle. Antes de que empiecen las noches
-        en vela y los pañales a cualquier hora, queremos celebrarlo con vosotros: una barbacoa al aire libre, con risas
-        y mucho cariño, para darle la bienvenida como se merece. Sin vosotros no sería lo mismo.
-      </p>
+      <div className="hero__inner">
+        <div className="hero__head">
+          <p className="hero__kicker">¡Estás invitado!</p>
+          <h1 className="hero__title">
+            <span className="hero__pre">Baby shower de</span>
+            <span className="sr-only">Gael</span>
+            <span className="blocks" aria-hidden="true">
+              {BLOCKS.map(({ letter, color, tilt }, i) => (
+                <span key={letter} className="block" style={cssVars({ '--c': color, '--r': `${tilt}deg`, '--i': i })}>
+                  <span className="block__face">{letter}</span>
+                </span>
+              ))}
+            </span>
+          </h1>
+          <p className="hero__hosts">
+            Samanta y Toni os esperan <Heart className="hero__heart" />
+          </p>
+        </div>
+
+        <BearScene />
+
+        <div className="hero__body">
+          <p className="hero__intro">
+            Gael está a punto de llegar y ya tiene a todo el mundo con ganas de conocerle. Antes de que empiecen las
+            noches en vela y los pañales a cualquier hora, queremos celebrarlo con vosotros: una barbacoa al aire libre,
+            con risas y mucho cariño, para darle la bienvenida como se merece. Sin vosotros no sería lo mismo.
+          </p>
+          <div className="hero__cta">
+            <a className="btn" href="#confirma">
+              Confirmar asistencia
+            </a>
+            <a className="btn btn--soft" href="#cuando">
+              Cuándo y dónde
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <Wave from="var(--sky-bottom)" to="var(--band-1)" />
     </header>
   )
 }

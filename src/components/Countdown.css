@@ -1,0 +1,102 @@
+.countdown {
+  position: relative;
+  z-index: 2;
+  margin-top: -2.75rem;
+}
+
+.countdown__card {
+  position: relative;
+  max-width: 620px;
+  margin-inline: auto;
+  padding: 1.1rem 1.25rem 1.4rem;
+  border: 3px solid var(--outline);
+  border-radius: 32px;
+  background: var(--card);
+  box-shadow: 0 6px 0 rgba(47, 59, 92, 0.22), var(--shadow);
+  text-align: center;
+}
+
+.countdown__card::after {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border: 2px dashed var(--stitch);
+  border-radius: 24px;
+  pointer-events: none;
+}
+
+.countdown__label {
+  color: var(--accent-text);
+  font-family: var(--font-script);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.countdown__units {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.5rem, 2.5vw, 1rem);
+  margin-top: 0.5rem;
+}
+
+.unit {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  aspect-ratio: 1;
+  border: 3px solid var(--outline);
+  border-radius: 50%;
+  background: var(--c);
+  color: var(--navy);
+  box-shadow: 0 4px 0 rgba(47, 59, 92, 0.25), inset 0 0.25rem 0 rgba(255, 255, 255, 0.55);
+}
+
+.unit__num {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 7.2vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  animation: unit-tick 0.4s ease-out;
+}
+
+.unit__label {
+  margin-top: 0.25rem;
+  font-size: clamp(0.5rem, 2.1vw, 0.72rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.countdown__note {
+  margin-top: 1rem;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.countdown__done {
+  padding: 0.75rem 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  font-weight: 600;
+}
+
+@keyframes unit-tick {
+  from {
+    transform: translateY(-6px);
+    opacity: 0.4;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unit__num {
+    animation: none;
+  }
+}
