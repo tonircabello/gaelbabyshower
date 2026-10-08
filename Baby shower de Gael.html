@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Baby shower de Gael</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #DCEBF5;
+    --sky-deep: #A9CBE4;
+    --butter: #FFE7A3;
+    --peach: #F8CBB8;
+    --mint: #CDEBD9;
+    --cloud: #FFFFFF;
+    --ink: #2F3B5C;
+    --ink-soft: #5B6787;
+    --line: #8A97B8;
+    --bg: var(--sky);
+    --card: var(--cloud);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1E2840; --card: #28344F; --ink: #F1F4FB; --ink-soft: #C3CBE0; --line: #7D8BB0;
+      --sky-deep: #5E7FA8;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1E2840; --card: #28344F; --ink: #F1F4FB; --ink-soft: #C3CBE0; --line: #7D8BB0;
+    --sky-deep: #5E7FA8;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Nunito", "Segoe UI", system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { font-family: "Fredoka", "Nunito", system-ui, sans-serif; font-weight: 600; line-height: 1.15; margin: 0; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--sky-deep); outline-offset: 3px; border-radius: 8px; }
+
+  /* Hero */
+  .hero { position: relative; text-align: center; padding: 3rem 1.25rem 4rem; }
+  .clothesline { width: 100%; max-width: 760px; height: auto; display: block; margin: 0 auto; }
+  .onesie { transform-origin: top center; animation: sway 4s ease-in-out infinite; }
+  .onesie:nth-of-type(2) { animation-delay: -1.3s; }
+  .onesie:nth-of-type(3) { animation-delay: -2.6s; }
+  @keyframes sway { 0%,100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+  @media (prefers-reduced-motion: reduce) { .onesie { animation: none; } }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 9vw, 5rem);
+    margin-top: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .hero .hosts { font-family: "Fredoka", sans-serif; font-size: clamp(1.1rem, 3.5vw, 1.4rem); color: var(--ink-soft); margin: .5rem 0 0; }
+  .intro { max-width: 34rem; margin: 1.75rem auto 0; font-size: 1.125rem; color: var(--ink); }
+
+  /* Sections */
+  main { max-width: 860px; margin: 0 auto; padding: 0 1.25rem 4rem; }
+  section { margin-top: 3.5rem; }
+  section > h2 { font-size: clamp(1.7rem, 5vw, 2.2rem); text-align: center; }
+  section > p.lead { text-align: center; max-width: 32rem; margin: .5rem auto 0; color: var(--ink-soft); }
+
+  .details {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;
+    background: var(--card); border-radius: 28px; padding: 1.75rem; margin-top: 1.5rem;
+    border: 2px dashed var(--sky-deep);
+  }
+  .details div { text-align: center; }
+  .details .emoji { font-size: 1.8rem; display: block; }
+  .details h3 { font-size: 1.15rem; margin-top: .25rem; }
+  .details p { margin: .2rem 0 0; color: var(--ink-soft); }
+
+  /* Gifts as tags on a string */
+  .gifts { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem; }
+  .gift {
+    position: relative; width: min(100%, 250px);
+    background: var(--c, var(--butter)); color: #2F3B5C;
+    border-radius: 18px 18px 26px 26px; padding: 2rem 1.25rem 1.4rem; text-align: center;
+  }
+  .gift::before { /* tag hole */
+    content: ""; position: absolute; top: .7rem; left: 50%; width: 12px; height: 12px; margin-left: -6px;
+    border-radius: 50%; background: var(--bg); box-shadow: inset 0 0 0 2px rgba(47,59,92,.25);
+  }
+  .gift:nth-child(odd) { transform: rotate(-1.5deg); }
+  .gift:nth-child(even) { transform: rotate(1.5deg); }
+  .gift .emoji { font-size: 2.2rem; display: block; line-height: 1; }
+  .gift h3 { font-size: 1.25rem; margin-top: .6rem; }
+  .gift p { margin: .35rem 0 0; font-size: .97rem; }
+  .gift.free { background: var(--card); color: var(--ink); border: 2px dashed var(--line); }
+  .gift.free::before { box-shadow: inset 0 0 0 2px var(--line); }
+
+  .note { text-align: center; max-width: 30rem; margin: 2rem auto 0; color: var(--ink-soft); font-size: .98rem; }
+
+  /* RSVP */
+  .rsvp { text-align: center; }
+  .btn {
+    display: inline-block; margin-top: 1.25rem; padding: .9rem 1.8rem; border-radius: 999px;
+    background: var(--ink); color: var(--bg); font-family: "Fredoka", sans-serif; font-size: 1.15rem; font-weight: 500;
+    text-decoration: none; transition: transform .15s ease;
+  }
+  .btn:hover { transform: scale(1.04); }
+  footer { text-align: center; padding: 2rem 1rem 3rem; color: var(--ink-soft); font-family: "Fredoka", sans-serif; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="clothesline" viewBox="0 0 760 210" role="img" aria-label="Tres bodys de bebé tendidos en una cuerda">
+    <path d="M10 40 Q380 95 750 40" fill="none" stroke="var(--line)" stroke-width="3" stroke-linecap="round"/>
+    <!-- Onesie 1 -->
+    <g transform="translate(170 62)">
+      <g class="onesie">
+        <rect x="-5" y="-14" width="10" height="22" rx="3" fill="#E9B78F"/>
+        <path d="M-48 0 L-18 0 Q0 14 18 0 L48 0 L66 34 L44 46 L36 34 L36 108 Q36 126 18 126 L8 126 Q0 112 -8 126 L-18 126 Q-36 126 -36 108 L-36 34 L-44 46 L-66 34 Z" fill="#FFE7A3" stroke="#2F3B5C" stroke-width="2.5" stroke-linejoin="round"/>
+        <circle cx="0" cy="62" r="10" fill="#F8CBB8"/>
+      </g>
+    </g>
+    <!-- Onesie 2 -->
+    <g transform="translate(380 82)">
+      <g class="onesie">
+        <rect x="-5" y="-14" width="10" height="22" rx="3" fill="#E9B78F"/>
+        <path d="M-48 0 L-18 0 Q0 14 18 0 L48 0 L66 34 L44 46 L36 34 L36 108 Q36 126 18 126 L8 126 Q0 112 -8 126 L-18 126 Q-36 126 -36 108 L-36 34 L-44 46 L-66 34 Z" fill="#FFFFFF" stroke="#2F3B5C" stroke-width="2.5" stroke-linejoin="round"/>
+        <text x="0" y="74" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="24" font-weight="600" fill="#2F3B5C">Gael</text>
+      </g>
+    </g>
+    <!-- Onesie 3 -->
+    <g transform="translate(590 62)">
+      <g class="onesie">
+        <rect x="-5" y="-14" width="10" height="22" rx="3" fill="#E9B78F"/>
+        <path d="M-48 0 L-18 0 Q0 14 18 0 L48 0 L66 34 L44 46 L36 34 L36 108 Q36 126 18 126 L8 126 Q0 112 -8 126 L-18 126 Q-36 126 -36 108 L-36 34 L-44 46 L-66 34 Z" fill="#CDEBD9" stroke="#2F3B5C" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M-12 58 l8 8 l16 -16" fill="none" stroke="#2F3B5C" stroke-width="0" />
+        <circle cx="-10" cy="56" r="4" fill="#2F3B5C"/><circle cx="10" cy="56" r="4" fill="#2F3B5C"/>
+        <path d="M-9 70 Q0 78 9 70" fill="none" stroke="#2F3B5C" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+    </g>
+  </svg>
+
+  <h1>Baby shower de Gael</h1>
+  <p class="hosts">Samanta y Toni os esperan</p>
+  <p class="intro">
+    Gael está a punto de llegar y ya tiene a todo el mundo con ganas de conocerle.
+    Antes de que empiecen las noches en vela y los pañales a cualquier hora,
+    queremos celebrarlo con vosotros: una barbacoa al aire libre, con risas y mucho cariño,
+    para darle la bienvenida como se merece. Sin vosotros no sería lo mismo.
+  </p>
+</header>
+
+<main>
+  <section aria-labelledby="cuando">
+    <h2 id="cuando">Cuándo y dónde</h2>
+    <div class="details">
+      <div><span class="emoji" aria-hidden="true">📅</span><h3>Día</h3><p>Sábado, 7 de noviembre</p></div>
+      <div><span class="emoji" aria-hidden="true">🕔</span><h3>Hora</h3><p>A las 13:00 h</p></div>
+      <div><span class="emoji" aria-hidden="true">📍</span><h3>Lugar</h3><p>Barbacoa Park Les Camanyes<br><a href="https://share.google/9fU222P2wzshoy3MI" target="_blank" rel="noopener">Ver en el mapa</a></p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="regalos">
+    <h2 id="regalos">¿Qué podéis traer?</h2>
+    <p class="lead">Lo que más nos va a ayudar en los primeros meses. Cualquier cosita de esta lista será perfecta.</p>
+    <ul class="gifts">
+      <li class="gift" style="--c:#FFE7A3">
+        <span class="emoji" aria-hidden="true">🧷</span>
+        <h3>Pañales</h3>
+        <p>Nunca son demasiados. Mejor de tallas 1, 2 y 3, que crece rapidísimo.</p>
+      </li>
+      <li class="gift" style="--c:#CDEBD9">
+        <span class="emoji" aria-hidden="true">🧻</span>
+        <h3>Toallitas húmedas</h3>
+        <p>Paquetes y más paquetes. Se gastan a una velocidad increíble.</p>
+      </li>
+      <li class="gift" style="--c:#F8CBB8">
+        <span class="emoji" aria-hidden="true">🌸</span>
+        <h3>Compresas</h3>
+        <p>Para mamá, que el posparto también necesita mimos.</p>
+      </li>
+      <li class="gift" style="--c:#DCEBF5">
+        <span class="emoji" aria-hidden="true">👶</span>
+        <h3>Bodys</h3>
+        <p>De 0 a 3 o de 3 a 6 meses. De manga corta o larga, todos sirven.</p>
+      </li>
+      <li class="gift" style="--c:#FFE7A3">
+        <span class="emoji" aria-hidden="true">🍼</span>
+        <h3>Y demás</h3>
+        <p>Muselinas, baberos, pijamitas, crema para el culito… lo básico del día a día.</p>
+      </li>
+      <li class="gift free">
+        <span class="emoji" aria-hidden="true">🎁</span>
+        <h3>Lo que tú elijas</h3>
+        <p>Si nada de esto te convence, sorpréndenos con algo que te apetezca regalarle.</p>
+      </li>
+    </ul>
+    <p class="note">Lo más importante es que vengáis. El regalo es lo de menos 💛</p>
+  </section>
+
+  <section class="rsvp" aria-labelledby="confirma">
+    <h2 id="confirma">¿Vendrás?</h2>
+    <p class="lead">Confírmanos tu asistencia para que no falte comida para nadie.</p>
+    <a class="btn" href="https://wa.me/34000000000?text=¡Hola!%20Confirmo%20que%20voy%20al%20baby%20shower%20de%20Gael%20🍼" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+  </section>
+</main>
+
+<footer>Con muchas ganas de veros, Samanta, Toni y Gael 🍼</footer>
+
+</body>
+</html>
